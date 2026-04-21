@@ -320,72 +320,610 @@ pre {
   padding: 10px 18px;
   font-family: 'Zen Maru Gothic', sans-serif;
   font-size: 0.9rem;
-  }
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.18s;
+}
+.quiz-btn:hover:not(:disabled) { background: #f0f4ff; border-color: var(--accent3); }
+.quiz-btn.correct { background: #e8f5e9; border-color: #2d6a4f; color: #2d6a4f; }
+.quiz-btn.wrong { background: #fdecea; border-color: #e53935; color: #c62828; }
+.quiz-btn.show-correct { background: #e8f5e9; border-color: #2d6a4f; color: #2d6a4f; }
+.quiz-feedback { margin-top: 8px; font-size: 0.88rem; font-weight: 700; min-height: 20px; }
+.quiz-feedback.ok { color: #2d6a4f; }
+.quiz-feedback.ng { color: #c62828; }
+.site-footer { background: var(--ink); color: rgba(255,255,255,0.6); text-align: center; padding: 36px 24px; font-size: 0.85rem; }
+.site-footer strong { color: #fff; }
+@media (max-width: 600px) {
+  .section { padding: 20px 18px; }
+  .quiz-section { padding: 20px 18px; }
+  .tag-grid { grid-template-columns: 1fr 1fr; }
+  .header-nav { display: none; }
+}
 </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <div class="site-logo">はじめてのHTML/CSS<span> 教科書</span></div>
-      <nav class="header-nav">
-        <a href="#">ホーム</a>
-        <a href="#">目次</a>
-        <a href="#">お問い合わせ</a>
-      </nav>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-logo">HTML<span>/</span>CSS <span style="color:rgba(255,255,255,0.5);font-weight:400">教科書</span></div>
+    <nav class="header-nav">
+      <a href="#chapter1">第1章</a>
+      <a href="#chapter2">第2章</a>
+      <a href="#chapter3">第3章</a>
+      <a href="#chapter4">第4章</a>
+      <a href="#chapter5">第5章</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-badge">📖 完全初心者向け</div>
+  <h1>はじめての<br>HTML / CSS</h1>
+  <p>ゼロからWebページを作れるようになろう。<br>難しい言葉はなし。やさしく、楽しく学べる教科書です。</p>
+  <div class="hero-tags">
+    <span class="hero-tag">🌐 HTML基礎</span>
+    <span class="hero-tag">🎨 CSS基礎</span>
+    <span class="hero-tag">📱 レイアウト</span>
+    <span class="hero-tag">✏️ 練習問題つき</span>
+  </div>
+</section>
+
+<div class="main-wrap">
+
+  <!-- 目次 -->
+  <div class="toc-section">
+    <div class="toc-title">📚 もくじ</div>
+    <ul class="toc-list">
+      <li><a href="#chapter1"><span class="toc-ch">第1章</span> HTMLとCSSってなに？</a></li>
+      <li><a href="#chapter2"><span class="toc-ch">第2章</span> HTMLの基本 — タグを覚えよう</a></li>
+      <li><a href="#chapter3"><span class="toc-ch">第3章</span> CSSの基本 — 見た目を整えよう</a></li>
+      <li><a href="#chapter4"><span class="toc-ch">第4章</span> レイアウトを作ろう</a></li>
+      <li><a href="#chapter5"><span class="toc-ch">第5章</span> まとめ＆練習問題</a></li>
+    </ul>
+  </div>
+
+  <!-- 第1章 -->
+  <section class="chapter" id="chapter1">
+    <div class="chapter-header">
+      <span class="chapter-num">第 1 章</span>
+      <h2 class="chapter-title">HTMLとCSSってなに？</h2>
     </div>
-  </header>
-  <section class="hero">
-    <div class="hero-badge">新着</div>
-    <h1>HTML/CSSの基礎を学ぼう</h1>
-    <p>この教科書では、HTMLとCSSの基本を学ぶことができます。</p>
-    <div class="hero-tags">
-      <div class="hero-tag">HTML</div>
-      <div class="hero-tag">CSS</div>
-      <div class="hero-tag">Web開発</div>
+
+    <div class="section">
+      <div class="section-title">Webページは何でできている？</div>
+      <p>あなたが毎日見ているWebページは、主に<strong>2つの言語</strong>でできています。</p>
+      <div class="tag-grid">
+        <div class="tag-card">
+          <div class="tag-name" style="color:#e85d04;font-size:1.1rem">HTML</div>
+          <div class="tag-desc">🏗️ <strong>骨格・構造</strong><br>「ここに文字」「ここに画像」という内容の設計図</div>
+        </div>
+        <div class="tag-card">
+          <div class="tag-name" style="color:#2d6a4f;font-size:1.1rem">CSS</div>
+          <div class="tag-desc">🎨 <strong>デザイン・見た目</strong><br>色・大きさ・位置などおしゃれにする役割</div>
+        </div>
+        <div class="tag-card">
+          <div class="tag-name" style="color:#1d3557;font-size:1.1rem">JavaScript</div>
+          <div class="tag-desc">⚡ <strong>動き・機能</strong><br>ボタンを押したら動く、などのインタラクション</div>
+        </div>
+      </div>
+      <div class="callout tip">
+        <div class="callout-icon">🏠</div>
+        <div class="callout-body">
+          <div class="callout-title">たとえて言うと…</div>
+          <p>HTMLは<strong>家の骨組み・間取り</strong>、CSSは<strong>壁紙・インテリア</strong>のようなものです。まず骨組みを作って、それから飾り付けます。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">HTMLファイルの基本形</div>
+      <p>すべてのHTMLファイルは、この<em>おまじない</em>から始まります。まずはこの形を覚えましょう！</p>
+      <div class="code-block">
+        <div class="code-label">HTML</div>
+        <pre><span class="c-tag">&lt;!DOCTYPE html&gt;</span>              <span class="c-comment">&lt;!-- HTML5で書きますよ、という宣言 --&gt;</span>
+<span class="c-tag">&lt;html</span> <span class="c-attr">lang</span>=<span class="c-val">"ja"</span><span class="c-tag">&gt;</span>              <span class="c-comment">&lt;!-- ページ全体を囲む --&gt;</span>
+
+  <span class="c-tag">&lt;head&gt;</span>                        <span class="c-comment">&lt;!-- ブラウザへの設定（画面には出ない） --&gt;</span>
+    <span class="c-tag">&lt;meta</span> <span class="c-attr">charset</span>=<span class="c-val">"UTF-8"</span><span class="c-tag">&gt;</span>   <span class="c-comment">&lt;!-- 日本語を使えるようにする --&gt;</span>
+    <span class="c-tag">&lt;title&gt;</span>私のページ<span class="c-tag">&lt;/title&gt;</span>    <span class="c-comment">&lt;!-- タブに表示される名前 --&gt;</span>
+  <span class="c-tag">&lt;/head&gt;</span>
+
+  <span class="c-tag">&lt;body&gt;</span>                        <span class="c-comment">&lt;!-- ここに見える内容を書く --&gt;</span>
+    <span class="c-tag">&lt;h1&gt;</span>こんにちは！<span class="c-tag">&lt;/h1&gt;</span>
+    <span class="c-tag">&lt;p&gt;</span>これは最初のWebページです。<span class="c-tag">&lt;/p&gt;</span>
+  <span class="c-tag">&lt;/body&gt;</span>
+
+<span class="c-tag">&lt;/html&gt;</span></pre>
+      </div>
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">headとbodyの違い</div>
+          <p><code>&lt;head&gt;</code> は「ブラウザへの指示書」でページには<strong>表示されません</strong>。<br>
+          <code>&lt;body&gt;</code> が「実際に画面に見える部分」です。コンテンツはここに書きます。</p>
+        </div>
+      </div>
     </div>
   </section>
-  <main class="main-wrap">
-    <section class="toc-section">
-      <h2 class="toc-title">目次</h2>
-      <ul class="toc-list">
-        <li><a href="#chapter1">第1章: HTMLの基本</a></li>
-        <li><a href="#chapter2">第2章: CSSの基本</a></li>
-        <li><a href="#chapter3">実践: Webページの作成</a></li>
+
+  <!-- 第2章 -->
+  <section class="chapter" id="chapter2">
+    <div class="chapter-header">
+      <span class="chapter-num">第 2 章</span>
+      <h2 class="chapter-title">HTMLの基本 — タグを覚えよう</h2>
+    </div>
+
+    <div class="section">
+      <div class="section-title">タグとはなに？</div>
+      <p>HTMLは<strong>タグ</strong>という「命令」を使って書きます。タグは必ず <code>&lt;開始タグ&gt;</code> と <code>&lt;/終了タグ&gt;</code> の2つがセットです。</p>
+      <div class="code-block">
+        <div class="code-label">HTML</div>
+        <pre><span class="c-tag">&lt;p&gt;</span>これは段落です。<span class="c-tag">&lt;/p&gt;</span>
+ ↑開始タグ              ↑終了タグ（/ がつく）</pre>
+      </div>
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">よくある間違い</div>
+          <p>終了タグの<strong> / （スラッシュ）を忘れない</strong>ようにしましょう！<br>
+          ❌ <code>&lt;p&gt;テキスト&lt;p&gt;</code>　→　✅ <code>&lt;p&gt;テキスト&lt;/p&gt;</code></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">よく使うHTMLタグ一覧</div>
+      <div class="tag-grid">
+        <div class="tag-card"><div class="tag-name">&lt;h1&gt;〜&lt;h6&gt;</div><div class="tag-desc">見出し。h1が一番大きく、h6が最小</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;p&gt;</div><div class="tag-desc">段落（テキストのまとまり）</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;a&gt;</div><div class="tag-desc">リンク（クリックして移動）</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;img&gt;</div><div class="tag-desc">画像を表示する</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;ul&gt; &lt;li&gt;</div><div class="tag-desc">箇条書きリスト</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;ol&gt; &lt;li&gt;</div><div class="tag-desc">番号付きリスト</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;div&gt;</div><div class="tag-desc">グループ分け（箱）</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;span&gt;</div><div class="tag-desc">インラインの範囲指定</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;strong&gt;</div><div class="tag-desc">太字（重要な文字）</div></div>
+        <div class="tag-card"><div class="tag-name">&lt;br&gt;</div><div class="tag-desc">改行（終了タグ不要）</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">見出しタグの使い方</div>
+      <p><code>&lt;h1&gt;</code> が最大の見出し、<code>&lt;h6&gt;</code> が最小です。ページのタイトルは <code>&lt;h1&gt;</code>、その下の見出しは <code>&lt;h2&gt;</code> のように使います。</p>
+      <div class="code-block">
+        <div class="code-label">HTML</div>
+        <pre><span class="c-tag">&lt;h1&gt;</span>ページタイトル（一番大きい）<span class="c-tag">&lt;/h1&gt;</span>
+<span class="c-tag">&lt;h2&gt;</span>大見出し<span class="c-tag">&lt;/h2&gt;</span>
+<span class="c-tag">&lt;h3&gt;</span>中見出し<span class="c-tag">&lt;/h3&gt;</span>
+<span class="c-tag">&lt;p&gt;</span>普通の文章はpタグを使います。<span class="c-tag">&lt;/p&gt;</span></pre>
+      </div>
+      <div class="preview-wrap">
+        <div class="preview-label">👁 ブラウザ表示イメージ</div>
+        <div class="preview-box">
+          <h1 style="font-size:1.8rem;font-weight:900;margin-bottom:4px">ページタイトル（一番大きい）</h1>
+          <h2 style="font-size:1.3rem;font-weight:700;margin-bottom:4px">大見出し</h2>
+          <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:6px">中見出し</h3>
+          <p style="font-size:0.95rem">普通の文章はpタグを使います。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">リンク・画像・リスト</div>
+      <div class="code-block">
+        <div class="code-label">HTML — リンクと画像</div>
+        <pre><span class="c-comment">&lt;!-- リンク --&gt;</span>
+<span class="c-tag">&lt;a</span> <span class="c-attr">href</span>=<span class="c-val">"https://example.com"</span><span class="c-tag">&gt;</span>クリックしてね<span class="c-tag">&lt;/a&gt;</span>
+
+<span class="c-comment">&lt;!-- 画像（終了タグなし） --&gt;</span>
+<span class="c-tag">&lt;img</span> <span class="c-attr">src</span>=<span class="c-val">"cat.jpg"</span> <span class="c-attr">alt</span>=<span class="c-val">"猫の写真"</span><span class="c-tag">&gt;</span>
+      ↑画像ファイル名    ↑説明テキスト（必須！）</pre>
+      </div>
+      <div class="code-block">
+        <div class="code-label">HTML — リスト</div>
+        <pre><span class="c-comment">&lt;!-- 箇条書き（ul）--&gt;</span>
+<span class="c-tag">&lt;ul&gt;</span>
+  <span class="c-tag">&lt;li&gt;</span>りんご<span class="c-tag">&lt;/li&gt;</span>
+  <span class="c-tag">&lt;li&gt;</span>バナナ<span class="c-tag">&lt;/li&gt;</span>
+<span class="c-tag">&lt;/ul&gt;</span>
+
+<span class="c-comment">&lt;!-- 番号付き（ol）--&gt;</span>
+<span class="c-tag">&lt;ol&gt;</span>
+  <span class="c-tag">&lt;li&gt;</span>水を沸騰させる<span class="c-tag">&lt;/li&gt;</span>
+  <span class="c-tag">&lt;li&gt;</span>麺を入れる<span class="c-tag">&lt;/li&gt;</span>
+<span class="c-tag">&lt;/ol&gt;</span></pre>
+      </div>
+      <div class="preview-wrap">
+        <div class="preview-label">👁 ブラウザ表示イメージ</div>
+        <div class="preview-box" style="display:flex;gap:40px;flex-wrap:wrap">
+          <div>
+            <p style="font-weight:700;margin-bottom:6px">箇条書き（ul）</p>
+            <ul style="padding-left:20px"><li>りんご</li><li>バナナ</li></ul>
+          </div>
+          <div>
+            <p style="font-weight:700;margin-bottom:6px">番号付き（ol）</p>
+            <ol style="padding-left:20px"><li>水を沸騰させる</li><li>麺を入れる</li></ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第3章 -->
+  <section class="chapter" id="chapter3">
+    <div class="chapter-header">
+      <span class="chapter-num">第 3 章</span>
+      <h2 class="chapter-title">CSSの基本 — 見た目を整えよう</h2>
+    </div>
+
+    <div class="section">
+      <div class="section-title">CSSの書き方</div>
+      <p>CSSは「<strong>どの要素</strong>を、<strong>どうデザインする</strong>か」を書きます。</p>
+      <div class="code-block">
+        <div class="code-label">CSS</div>
+        <pre><span class="c-sel">h1</span> {                     <span class="c-comment">/* セレクター：対象のHTML要素 */</span>
+  <span class="c-prop">color</span>: <span class="c-pval">red</span>;            <span class="c-comment">/* プロパティ: 値; */</span>
+  <span class="c-prop">font-size</span>: <span class="c-pval">32px</span>;
+}
+
+<span class="c-sel">p</span> {
+  <span class="c-prop">color</span>: <span class="c-pval">#333333</span>;         <span class="c-comment">/* カラーコードで色を指定 */</span>
+  <span class="c-prop">line-height</span>: <span class="c-pval">1.8</span>;      <span class="c-comment">/* 行の高さ */</span>
+}</pre>
+      </div>
+      <div class="callout info">
+        <div class="callout-icon">📌</div>
+        <div class="callout-body">
+          <div class="callout-title">CSSをHTMLに読み込む方法</div>
+          <p><code>&lt;head&gt;</code> の中に書きます：<br>
+          <code>&lt;link rel="stylesheet" href="style.css"&gt;</code><br>
+          または <code>&lt;style&gt; ... &lt;/style&gt;</code> タグの中に直接書くこともできます。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">色の指定方法</div>
+      <div class="code-block">
+        <div class="code-label">CSS</div>
+        <pre><span class="c-sel">p</span> {
+  <span class="c-prop">color</span>: <span class="c-pval">red</span>;              <span class="c-comment">/* ① 色の名前（英語） */</span>
+  <span class="c-prop">color</span>: <span class="c-pval">#ff0000</span>;         <span class="c-comment">/* ② カラーコード */</span>
+  <span class="c-prop">color</span>: <span class="c-pval">rgb(255, 0, 0)</span>;  <span class="c-comment">/* ③ RGB値（赤,緑,青） */</span>
+}</pre>
+      </div>
+      <p style="margin-top:12px">よく使う色：</p>
+      <div class="swatch-row">
+        <div>
+          <div class="swatch" style="background:#e85d04"><span style="color:#fff">#e85d04</span></div>
+          <p style="font-size:0.7rem;text-align:center;margin-top:3px">オレンジ</p>
+        </div>
+        <div>
+          <div class="swatch" style="background:#2d6a4f"><span style="color:#fff">#2d6a4f</span></div>
+          <p style="font-size:0.7rem;text-align:center;margin-top:3px">緑</p>
+        </div>
+        <div>
+          <div class="swatch" style="background:#1d3557"><span style="color:#fff">#1d3557</span></div>
+          <p style="font-size:0.7rem;text-align:center;margin-top:3px">紺</p>
+        </div>
+        <div>
+          <div class="swatch" style="background:#ffd166"><span>#ffd166</span></div>
+          <p style="font-size:0.7rem;text-align:center;margin-top:3px">黄色</p>
+        </div>
+        <div>
+          <div class="swatch" style="background:#fff;border-color:#ccc"><span>#ffffff</span></div>
+          <p style="font-size:0.7rem;text-align:center;margin-top:3px">白</p>
+        </div>
+        <div>
+          <div class="swatch" style="background:#1a1a1a"><span style="color:#fff">#1a1a1a</span></div>
+          <p style="font-size:0.7rem;text-align:center;margin-top:3px">黒</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">よく使うCSSプロパティ</div>
+      <table class="prop-table">
+        <thead><tr><th>プロパティ</th><th>意味</th><th>例</th></tr></thead>
+        <tbody>
+          <tr><td><code>color</code></td><td>文字の色</td><td><code>color: #333;</code></td></tr>
+          <tr><td><code>background-color</code></td><td>背景色</td><td><code>background-color: yellow;</code></td></tr>
+          <tr><td><code>font-size</code></td><td>文字の大きさ</td><td><code>font-size: 18px;</code></td></tr>
+          <tr><td><code>font-weight</code></td><td>文字の太さ</td><td><code>font-weight: bold;</code></td></tr>
+          <tr><td><code>text-align</code></td><td>文字の位置</td><td><code>text-align: center;</code></td></tr>
+          <tr><td><code>margin</code></td><td>外側の余白</td><td><code>margin: 16px;</code></td></tr>
+          <tr><td><code>padding</code></td><td>内側の余白</td><td><code>padding: 10px 20px;</code></td></tr>
+          <tr><td><code>border</code></td><td>枠線</td><td><code>border: 2px solid red;</code></td></tr>
+          <tr><td><code>border-radius</code></td><td>角を丸くする</td><td><code>border-radius: 8px;</code></td></tr>
+          <tr><td><code>width / height</code></td><td>幅・高さ</td><td><code>width: 300px;</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">ボックスモデルを理解しよう</div>
+      <p>すべてのHTML要素は<strong>箱（ボックス）</strong>です。箱には4つの層があります。</p>
+      <div class="box-model">
+        <div class="bm-label">📦 margin（外側の余白）</div>
+        <div class="bm-border">
+          <div class="bm-label2">🟠 border（枠線）</div>
+          <div class="bm-padding">
+            <div class="bm-label3">🟢 padding（内側の余白）</div>
+            <div class="bm-content">✨ content（内容）</div>
+          </div>
+        </div>
+      </div>
+      <div class="code-block">
+        <div class="code-label">CSS</div>
+        <pre><span class="c-sel">.box</span> {
+  <span class="c-prop">margin</span>: <span class="c-pval">20px</span>;            <span class="c-comment">/* 外側の余白 */</span>
+  <span class="c-prop">border</span>: <span class="c-pval">2px solid black</span>;  <span class="c-comment">/* 枠線 */</span>
+  <span class="c-prop">padding</span>: <span class="c-pval">10px 20px</span>;      <span class="c-comment">/* 内側 上下10px 左右20px */</span>
+  <span class="c-prop">width</span>: <span class="c-pval">300px</span>;
+}</pre>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">クラスとIDでスタイルを当てる</div>
+      <div class="code-block">
+        <div class="code-label">HTML + CSS</div>
+        <pre><span class="c-comment">&lt;!-- HTML --&gt;</span>
+<span class="c-tag">&lt;p</span> <span class="c-attr">class</span>=<span class="c-val">"red-text"</span><span class="c-tag">&gt;</span>この文字は赤くなる<span class="c-tag">&lt;/p&gt;</span>
+<span class="c-tag">&lt;p</span> <span class="c-attr">id</span>=<span class="c-val">"main-title"</span><span class="c-tag">&gt;</span>IDでスタイルを当てる<span class="c-tag">&lt;/p&gt;</span>
+
+<span class="c-comment">/* CSS */</span>
+<span class="c-sel">.red-text</span> {     <span class="c-comment">/* クラスは . （ドット）で書く */</span>
+  <span class="c-prop">color</span>: <span class="c-pval">red</span>;
+}
+
+<span class="c-sel">#main-title</span> {   <span class="c-comment">/* IDは # （シャープ）で書く */</span>
+  <span class="c-prop">font-size</span>: <span class="c-pval">28px</span>;
+}</pre>
+      </div>
+      <div class="callout tip">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <div class="callout-title">classとidの違い</div>
+          <p><strong>class</strong>：同じクラスを<em>何度でも使える</em>（複数の要素に適用OK）<br>
+          <strong>id</strong>：1ページに<em>1回だけ</em>使える。基本的に <strong>classを多く使う</strong>のがおすすめです。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第4章 -->
+  <section class="chapter" id="chapter4">
+    <div class="chapter-header">
+      <span class="chapter-num">第 4 章</span>
+      <h2 class="chapter-title">レイアウトを作ろう</h2>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Flexboxで横並びにする</div>
+      <p>要素を<strong>横に並べる</strong>とき、最もよく使うのが <code>display: flex</code> です。</p>
+      <div class="code-block">
+        <div class="code-label">HTML + CSS</div>
+        <pre><span class="c-comment">&lt;!-- HTML --&gt;</span>
+<span class="c-tag">&lt;div</span> <span class="c-attr">class</span>=<span class="c-val">"container"</span><span class="c-tag">&gt;</span>
+  <span class="c-tag">&lt;div&gt;</span>ボックス1<span class="c-tag">&lt;/div&gt;</span>
+  <span class="c-tag">&lt;div&gt;</span>ボックス2<span class="c-tag">&lt;/div&gt;</span>
+  <span class="c-tag">&lt;div&gt;</span>ボックス3<span class="c-tag">&lt;/div&gt;</span>
+<span class="c-tag">&lt;/div&gt;</span>
+
+<span class="c-comment">/* CSS */</span>
+<span class="c-sel">.container</span> {
+  <span class="c-prop">display</span>: <span class="c-pval">flex</span>;            <span class="c-comment">/* 横並びにする */</span>
+  <span class="c-prop">gap</span>: <span class="c-pval">16px</span>;               <span class="c-comment">/* アイテム間の隙間 */</span>
+  <span class="c-prop">justify-content</span>: <span class="c-pval">center</span>;  <span class="c-comment">/* 中央に配置 */</span>
+}</pre>
+      </div>
+      <div class="preview-wrap">
+        <div class="preview-label">👁 ブラウザ表示イメージ</div>
+        <div class="preview-box">
+          <div class="flex-demo">
+            <div class="flex-item">ボックス1</div>
+            <div class="flex-item">ボックス2</div>
+            <div class="flex-item">ボックス3</div>
+          </div>
+        </div>
+      </div>
+      <table class="prop-table" style="margin-top:16px">
+        <thead><tr><th>justify-content の値</th><th>意味</th></tr></thead>
+        <tbody>
+          <tr><td><code>flex-start</code></td><td>左寄せ（デフォルト）</td></tr>
+          <tr><td><code>center</code></td><td>中央寄せ</td></tr>
+          <tr><td><code>flex-end</code></td><td>右寄せ</td></tr>
+          <tr><td><code>space-between</code></td><td>両端に配置し均等割り</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">ボタンを作ってみよう</div>
+      <div class="code-block">
+        <div class="code-label">HTML + CSS</div>
+        <pre><span class="c-comment">&lt;!-- HTML --&gt;</span>
+<span class="c-tag">&lt;a</span> <span class="c-attr">href</span>=<span class="c-val">"#"</span> <span class="c-attr">class</span>=<span class="c-val">"btn"</span><span class="c-tag">&gt;</span>クリック！<span class="c-tag">&lt;/a&gt;</span>
+
+<span class="c-comment">/* CSS */</span>
+<span class="c-sel">.btn</span> {
+  <span class="c-prop">display</span>: <span class="c-pval">inline-block</span>;
+  <span class="c-prop">background-color</span>: <span class="c-pval">#e85d04</span>;
+  <span class="c-prop">color</span>: <span class="c-pval">white</span>;
+  <span class="c-prop">text-decoration</span>: <span class="c-pval">none</span>;     <span class="c-comment">/* 下線を消す */</span>
+  <span class="c-prop">padding</span>: <span class="c-pval">12px 28px</span>;
+  <span class="c-prop">border-radius</span>: <span class="c-pval">6px</span>;
+  <span class="c-prop">font-weight</span>: <span class="c-pval">bold</span>;
+}
+<span class="c-sel">.btn:hover</span> {                   <span class="c-comment">/* マウスを乗せたとき */</span>
+  <span class="c-prop">background-color</span>: <span class="c-pval">#c74f00</span>;
+}</pre>
+      </div>
+      <div class="preview-wrap">
+        <div class="preview-label">👁 ブラウザ表示イメージ</div>
+        <div class="preview-box">
+          <a href="#" style="display:inline-block;background:#e85d04;color:white;text-decoration:none;padding:12px 28px;border-radius:6px;font-weight:bold;font-family:'Zen Maru Gothic',sans-serif">クリック！</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">レスポンシブデザイン（スマホ対応）</div>
+      <p><code>@media</code> を使うと、画面の幅に応じてデザインを変えられます。</p>
+      <div class="code-block">
+        <div class="code-label">CSS</div>
+        <pre><span class="c-sel">.container</span> {
+  <span class="c-prop">display</span>: <span class="c-pval">flex</span>;
+  <span class="c-prop">gap</span>: <span class="c-pval">20px</span>;
+}
+
+<span class="c-comment">/* 画面幅が600px以下のとき（スマホ）*/</span>
+<span class="c-sel">@media (max-width: 600px)</span> {
+  <span class="c-sel">.container</span> {
+    <span class="c-prop">flex-direction</span>: <span class="c-pval">column</span>;  <span class="c-comment">/* 縦並びに変える */</span>
+  }
+}</pre>
+      </div>
+      <div class="callout tip">
+        <div class="callout-icon">📱</div>
+        <div class="callout-body">
+          <div class="callout-title">モバイルファースト</div>
+          <p>現代のWebは<strong>スマホで見る人が多数派</strong>です。スマホのデザインを先に考えて、大きい画面用に追加していくやり方を「モバイルファースト」といいます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第5章 -->
+  <section class="chapter" id="chapter5">
+    <div class="chapter-header">
+      <span class="chapter-num">第 5 章</span>
+      <h2 class="chapter-title">まとめ＆練習問題</h2>
+    </div>
+
+    <div class="section">
+      <div class="section-title">ここまでのまとめ</div>
+      <ul style="padding-left:20px;display:flex;flex-direction:column;gap:8px">
+        <li>HTMLはWebページの<strong>構造・内容</strong>を書く言語</li>
+        <li>CSSはWebページの<strong>見た目・デザイン</strong>を書く言語</li>
+        <li>タグは <code>&lt;開始&gt;</code> と <code>&lt;/終了&gt;</code> がセット</li>
+        <li>CSSは <code>セレクター { プロパティ: 値; }</code> の形</li>
+        <li><code>class</code> は何度でも使え、<code>id</code> は1回だけ</li>
+        <li><code>display: flex</code> で横並びレイアウトが作れる</li>
+        <li><code>@media</code> でスマホ対応ができる</li>
       </ul>
-    </section>
-    <section class="chapter" id="chapter1">
-      <div class="chapter-header">
-        <div class="chapter-num">第1章</div>
-        <h3 class="chapter-title">HTMLの基本</h3>
+    </div>
+
+    <!-- 練習問題 -->
+    <div class="quiz-section">
+      <div class="quiz-title">✏️ 練習問題 — 答えてみよう！</div>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">Q1</span> HTMLで「見出し（一番大きい）」を書くタグはどれ？</div>
+        <div class="quiz-choices">
+          <button class="quiz-btn" onclick="answer(this, false, 'q1', 1)">&lt;title&gt;</button>
+          <button class="quiz-btn" onclick="answer(this, true,  'q1', 1)">&lt;h1&gt;</button>
+          <button class="quiz-btn" onclick="answer(this, false, 'q1', 1)">&lt;header&gt;</button>
+          <button class="quiz-btn" onclick="answer(this, false, 'q1', 1)">&lt;big&gt;</button>
+        </div>
+        <div class="quiz-feedback" id="q1"></div>
       </div>
-      <div class="section">
-        <h4 class="section-title">HTMLとは？</h4>
-        <p>HTMLはWebページを作成するためのマークアップ言語です。</p>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">Q2</span> CSSでクラス名 "box" にスタイルを当てるセレクターは？</div>
+        <div class="quiz-choices">
+          <button class="quiz-btn" onclick="answer(this, false, 'q2', 1)">#box</button>
+          <button class="quiz-btn" onclick="answer(this, false, 'q2', 1)">box</button>
+          <button class="quiz-btn" onclick="answer(this, true,  'q2', 1)">.box</button>
+          <button class="quiz-btn" onclick="answer(this, false, 'q2', 1)">*box</button>
+        </div>
+        <div class="quiz-feedback" id="q2"></div>
       </div>
-    </section>
-    <section class="chapter" id="chapter2">
-      <div class="chapter-header">
-        <div class="chapter-num">第2章</div>
-        <h3 class="chapter-title">CSSの基本</h3>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">Q3</span> 要素を横並びにするCSSプロパティは？</div>
+        <div class="quiz-choices">
+          <button class="quiz-btn" onclick="answer(this, false, 'q3', 1)">display: block</button>
+          <button class="quiz-btn" onclick="answer(this, true,  'q3', 1)">display: flex</button>
+          <button class="quiz-btn" onclick="answer(this, false, 'q3', 1)">float: left</button>
+          <button class="quiz-btn" onclick="answer(this, false, 'q3', 1)">position: fixed</button>
+        </div>
+        <div class="quiz-feedback" id="q3"></div>
       </div>
-      <div class="section">
-        <h4 class="section-title">CSSとは？</h4>
-        <p>CSSはWebページのスタイルを定義するための言語です。</p>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">Q4</span> &lt;img&gt; タグに必ず書くべき属性は？</div>
+        <div class="quiz-choices">
+          <button class="quiz-btn" onclick="answer(this, false, 'q4', 1)">href</button>
+          <button class="quiz-btn" onclick="answer(this, false, 'q4', 1)">class</button>
+          <button class="quiz-btn" onclick="answer(this, true,  'q4', 1)">alt</button>
+          <button class="quiz-btn" onclick="answer(this, false, 'q4', 1)">id</button>
+        </div>
+        <div class="quiz-feedback" id="q4"></div>
       </div>
-    </section>
-    <section class="chapter" id="chapter3">
-      <div class="chapter-header">
-        <div class="chapter-num">実践</div>
-        <h3 class="chapter-title">Webページの作成</h3>
+
+      <div class="quiz-item">
+        <div class="quiz-q"><span class="quiz-q-num">Q5</span> 内側の余白を設定するCSSプロパティは？</div>
+        <div class="quiz-choices">
+          <button class="quiz-btn" onclick="answer(this, false, 'q5', 1)">margin</button>
+          <button class="quiz-btn" onclick="answer(this, true,  'q5', 1)">padding</button>
+          <button class="quiz-btn" onclick="answer(this, false, 'q5', 1)">border</button>
+          <button class="quiz-btn" onclick="answer(this, false, 'q5', 1)">spacing</button>
+        </div>
+        <div class="quiz-feedback" id="q5"></div>
       </div>
-      <div class="section">
-        <h4 class="section-title">実践内容</h4>
-        <p>この章では、実際にWebページを作成します。</p>
+    </div>
+
+    <div class="section" style="margin-top:28px">
+      <div class="section-title">次のステップ 🚀</div>
+      <ul style="padding-left:20px;display:flex;flex-direction:column;gap:10px;margin-top:6px">
+        <li>📝 <strong>VS Code（無料）</strong> をインストールしてHTMLを書いてみる</li>
+        <li>🌐 <strong>ブラウザ（Chrome等）</strong> でファイルを開いて確認する</li>
+        <li>🔍 <strong>右クリック→「検証」</strong> で他サイトのコードを見てみる</li>
+        <li>🎯 自己紹介ページを1つ<strong>完成させる</strong>のが一番の近道！</li>
+      </ul>
+      <div class="callout tip" style="margin-top:20px">
+        <div class="callout-icon">🎉</div>
+        <div class="callout-body">
+          <div class="callout-title">おめでとうございます！</div>
+          <p>HTML/CSSの基礎を学べました！<strong>たくさん書いて慣れることが一番の近道</strong>です。エラーが出てもOK。それが学びの証拠です。</p>
+        </div>
       </div>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2026 はじめてのHTML/CSS 教科書</p>
-  </footer>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <strong>はじめての HTML / CSS 教科書</strong><br>
+  <span style="opacity:0.6;font-size:0.8rem">初心者のためのWeb制作入門</span>
+</footer>
+
+<script>
+const answered = {};
+function answer(btn, isCorrect, qid) {
+  if (answered[qid]) return;
+  answered[qid] = true;
+  const btns = btn.closest('.quiz-choices').querySelectorAll('.quiz-btn');
+  btns.forEach(b => { b.disabled = true; });
+  const feedback = document.getElementById(qid);
+  if (isCorrect) {
+    btn.classList.add('correct');
+    feedback.textContent = '✅ 正解！ よくできました！';
+    feedback.className = 'quiz-feedback ok';
+  } else {
+    btn.classList.add('wrong');
+    feedback.textContent = '❌ 不正解… 正解はハイライトされている選択肢です。';
+    feedback.className = 'quiz-feedback ng';
+    btns.forEach(b => {
+      const handler = b.getAttribute('onclick');
+      if (handler && handler.includes('true')) b.classList.add('show-correct');
+    });
+  }
+}
+</script>
 </body>
 </html>
